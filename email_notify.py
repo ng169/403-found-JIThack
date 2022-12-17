@@ -49,9 +49,12 @@ for doc in cur:
         with smtplib.SMTP("smtp.gmail.com", port=587) as connection:
             connection.starttls()  # tls - transport layer security
             connection.login(user=my_email, password=password)
+            message = f"Subject:Flood Warning Alert!!!\n\n" \
+                      f"This mail is to inform you that there is probability of occurence of a flood near you.\n" \
+                      f"Please stay safe and take necessary precautions."
             connection.sendmail(
                 from_addr=my_email,
                 to_addrs=doc["email"],
-                msg=f"Subject:Flood Warning Alert\n\nThis mail is to inform you that there is probability of occurence of a flood near you. Please stay safe and take necessary precautions"
+                msg=message
             )
             connection.close()
